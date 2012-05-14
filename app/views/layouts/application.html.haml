@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title SimpleFeed
+    = stylesheet_link_tag    "application" :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .navbar
+      .navbar-inner
+        .container
+          %a.brand(href='/') SimpleFeed
+          %ul.nav.nav-pills.pull-right
+            - if signed_in?
+              %li= link_to "home", '/'
+    .container
+      - if flash.notice.present?
+        .alert.alert-info= notice
+      - if flash.alert.present?
+        .alert.alert-error= alert
+
+      = yield
+
