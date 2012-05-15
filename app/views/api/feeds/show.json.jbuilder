@@ -10,10 +10,11 @@ end
 json.link api_feed_url(@feed, format: :json)
 
 json.items do |json|
+  json.link api_feed_feed_items_url(@feed, format: :json)
   json.pages @feed.items_page_count(10)
   json.first_page api_feed_feed_items_url(@feed, page: 1, format: :json)
   json.last_page api_feed_feed_items_url(@feed, page: @feed.items_page_count(10), format: :json)
-  json.most_recent(@feed.feed_items.last_first) do |json, recent_item|
+  json.most_recent(@feed.feed_items.most_recent) do |json, recent_item|
     json.type recent_item.type
     json.image_url recent_item.image_url if recent_item.image_url.present?
     json.link_url  recent_item.link_url  if recent_item.link_url.present?

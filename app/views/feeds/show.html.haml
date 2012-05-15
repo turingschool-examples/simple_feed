@@ -12,3 +12,5 @@
         = link_to 'Edit', edit_feed_item_path(feed_item), class: "btn"
         = link_to 'Destroy', feed_item_path(feed_item), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-danger"
 
+= paginate @feed_items
+

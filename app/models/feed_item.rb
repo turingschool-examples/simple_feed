@@ -12,6 +12,14 @@ class FeedItem < ActiveRecord::Base
     last_first.limit(n)
   end
 
+  def self.items_page_count(page_size=10)
+    @items_page_count ||= begin
+      pages, rem = scoped.count.divmod(page_size)
+      pages += 1 if rem > 0
+      pages
+    end
+  end
+
   def kind
     read_attribute(:type) || "TextItem"
   end
