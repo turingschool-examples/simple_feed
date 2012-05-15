@@ -1,0 +1,12 @@
+.well
+  - form_url = @feed_item.new_record? ? feed_items_path : feed_item_path(@feed_item)
+  = simple_form_for(@feed_item, as: :feed_item, url: form_url, html: {class: "form-horizontal"}) do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :kind, as: :select, collection: [%w(Text TextItem), %w(Image ImageItem), %w(Link LinkItem)], disabled: !@feed_item.new_record?
+      = f.input :link_url,  disabled: true, input_html: {data: {'enable-on' => 'LinkItem'}}
+      = f.input :image_url, disabled: true, input_html: {data: {'enable-on' => 'ImageItem'}}
+      = f.input :body, input_html: {rows: 10}
+
+      = f.button :submit

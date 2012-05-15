@@ -1,4 +1,14 @@
 SimpleFeed::Application.routes.draw do
+  root to: 'feeds#index'
+  resources :sessions
+  resources :feeds
+  resources :feed_items
+  resources :users
+
+  match 'signup' => 'users#new',        :as => :signup
+  match 'login'  => 'sessions#new',     :as => :login
+  match 'logout' => 'sessions#destroy', :as => :logout
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

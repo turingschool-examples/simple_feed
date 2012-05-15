@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
+gem 'sorcery'
 gem 'jbuilder'
 gem 'simple_form'
 gem 'jquery-rails'

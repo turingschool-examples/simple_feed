@@ -1,0 +1,14 @@
+- if logged_in?
+  = link_to 'Add to the feed', new_feed_item_path, class: "btn btn-primary pull-right"
+- @feed_items.each do |feed_item|
+  .row
+    .span6.offset3.well
+      %div
+        %img{src: feed_item.feed.gravatar}
+        %strong= link_to(feed_item.username, feed_item.feed)
+        = distance_of_time_in_words_to_now(feed_item.created_at) + " ago"
+      %div.feed-item= render partial: feed_item, as: :feed_item
+      - if current_user.created?(feed_item)
+        = link_to 'Edit', edit_feed_item_path(feed_item), class: "btn"
+        = link_to 'Destroy', feed_item_path(feed_item), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-danger"
+

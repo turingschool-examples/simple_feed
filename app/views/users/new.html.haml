@@ -1,0 +1,10 @@
+%h1 New user
+
+= simple_form_for(@user, html: {class: 'form-horizontal'}) do |f|
+  = f.input :username
+  = f.input :email
+  = f.input :password
+  = f.input :password_confirmation
+  = f.button :submit
+
+= link_to 'Feed', feed_items_path

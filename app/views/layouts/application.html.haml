@@ -2,7 +2,7 @@
 %html
   %head
     %title SimpleFeed
-    = stylesheet_link_tag    "application" :media => "all"
+    = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
@@ -11,8 +11,12 @@
         .container
           %a.brand(href='/') SimpleFeed
           %ul.nav.nav-pills.pull-right
-            - if signed_in?
-              %li= link_to "home", '/'
+            %li= link_to "home", '/'
+            - if logged_in?
+              %li= link_to "log out", '/logout'
+            - else
+              %li= link_to "log in", '/login'
+              %li= link_to "sign up", '/signup'
     .container
       - if flash.notice.present?
         .alert.alert-info= notice

@@ -12,3 +12,7 @@
  *= require_self
  *= require_tree .
 */
+
+div.feed-item { margin: 20px 20px; }
+div.feed-item img { display: block; max-width: 300px; margin: 0 auto; }
+div.feed-item p { margin-top: 20px; }
