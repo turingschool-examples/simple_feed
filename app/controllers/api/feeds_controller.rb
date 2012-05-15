@@ -15,8 +15,8 @@ module Api
       last_page   = FeedItem.items_page_count(10)
       next_page   = [(params[:page] || 1).to_i + 1, last_page].min
 
-      next_url    = api_feed_items_url(page: next_page)
-      last_url    = api_feed_items_url(page: last_page)
+      next_url    = items_api_feeds_url(page: next_page)
+      last_url    = items_api_feeds_url(page: last_page)
       link_header = construct_link_header(next_url, last_url)
 
       respond_to do |format|
