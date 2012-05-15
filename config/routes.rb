@@ -4,7 +4,7 @@ SimpleFeed::Application.routes.draw do
 
   resources :sessions,   only:   [:create, :destroy, :new]
   resources :feeds,      only:   [:index, :show]
-  resources :feed_items, except: [:index, :show]
+  resources :feed_items, except: [:index, :show], path: 'items'
   resources :users,      only:   [:create, :new]
 
   match 'signup' => 'users#new',        :as => :signup
@@ -12,9 +12,11 @@ SimpleFeed::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
 
   namespace :api do
-    resources :feed_items, only: :index
     resources :feeds, only: :show do
-      resources :feed_items, only: [:index, :create, :update]
+      collection do
+        get :items
+      end
+      resources :feed_items, path: 'items', only: [:index, :create, :update]
     end
   end
 
