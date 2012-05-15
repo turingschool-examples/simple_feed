@@ -7,6 +7,8 @@ class CreateFeeds < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :feeds, :user_id, unique: true, nil: false
+    add_index :feeds, :name, unique: true, nil: false
     add_column :feed_items, :feed_id, :integer
   end
 end

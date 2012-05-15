@@ -8,6 +8,7 @@ class SorceryCore < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :users, :username, unique: true, nil: false
   end
 
   def self.down

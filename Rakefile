@@ -5,3 +5,6 @@
 require File.expand_path('../config/application', __FILE__)
 
 SimpleFeed::Application.load_tasks
+
+desc "Set up the app db and data"
+task "boot" => ["db:drop", "db:create", "db:migrate", "db:seed"]
