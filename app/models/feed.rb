@@ -11,6 +11,14 @@ class Feed < ActiveRecord::Base
     send(kind.tableize.to_sym)
   end
 
+  def items_page_count(page_size=10)
+    @items_page_count ||= begin
+      pages, rem = feed_items.count.divmod(page_size)
+      pages += 1 if rem > 0
+      pages
+    end
+  end
+
   def to_param
     name
   end
