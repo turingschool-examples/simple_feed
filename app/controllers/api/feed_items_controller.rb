@@ -25,7 +25,7 @@ module Api
 
       respond_to do |format|
         if @feed_item.save
-          format.json { render status: :created, location: @feed_item }
+          format.json { render status: :created, location: api_feed_feed_item_url(feed, @feed_item) }
         else
           format.json { render status: :unprocessable_entity }
         end
