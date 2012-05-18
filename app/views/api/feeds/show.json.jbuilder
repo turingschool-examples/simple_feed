@@ -25,4 +25,4 @@ json.items do |json|
   end
 end
 
-json.web_url url_for(@feed)
+json.web_url feed_url(@feed)

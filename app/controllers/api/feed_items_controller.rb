@@ -26,7 +26,7 @@ module Api
 
       respond_to do |format|
         if @feed_item.save
-          format.json { render status: :created, location: api_feed_feed_item_url(feed, @feed_item) }
+          format.json { render status: :created, location: api_feed_feed_item_url(current_user.feed, @feed_item) }
         else
           format.json { render status: :unprocessable_entity }
         end
@@ -34,8 +34,8 @@ module Api
     end
 
     def update
-      kind = params[:item].delete(:type)
-      @feed_item = current_user.feed.feed_item_of(kind).new(params[:item])
+      @feed_item = current_user.feed.feed_items.find(params[:id])
+      @feed_item.attributes = params[:item]
 
       respond_to do |format|
         if @feed_item.save
@@ -49,7 +49,7 @@ module Api
     private
 
     def verify_feed_ownership
-      unless current_user.feed.display_name == params[:feed_id]
+      unless current_user.feed.name == params[:feed_id]
         head status: :unauthorized
       end
     end
