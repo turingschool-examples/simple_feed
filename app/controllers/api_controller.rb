@@ -1,6 +1,8 @@
 class ApiController < ActionController::Base
   before_filter :authenticate
 
+  attr_accessor :current_user
+
   private
 
   def authenticate
@@ -16,11 +18,4 @@ class ApiController < ActionController::Base
     "<#{next_url}>; rel=\"next\", <#{last_url}>; rel=\"last\""
   end
 
-  def current_user
-    @current_user
-  end
-
-  def current_user=(user)
-    @current_user = user
-  end
 end

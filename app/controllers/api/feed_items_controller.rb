@@ -1,6 +1,8 @@
 module Api
   class FeedItemsController < ApiController
 
+    before_filter :verify_feed_ownership, except: :index
+
     def index
       feed        = Feed.find_by_name!(params[:feed_id])
       @feed_items = feed.feed_items.last_first(params[:page])
@@ -19,9 +21,8 @@ module Api
     end
 
     def create
-      feed = Feed.find_by_name!(params[:feed_id])
       kind = params[:item].delete(:type)
-      @feed_item = feed.feed_item_of(kind).new(params[:item])
+      @feed_item = current_user.feed.feed_item_of(kind).new(params[:item])
 
       respond_to do |format|
         if @feed_item.save
@@ -33,9 +34,8 @@ module Api
     end
 
     def update
-      feed = Feed.find_by_name!(params[:feed_id])
       kind = params[:item].delete(:type)
-      @feed_item = feed.feed_item_of(kind).new(params[:item])
+      @feed_item = current_user.feed.feed_item_of(kind).new(params[:item])
 
       respond_to do |format|
         if @feed_item.save
@@ -43,6 +43,14 @@ module Api
         else
           format.json { render status: :unprocessable_entity }
         end
+      end
+    end
+
+    private
+
+    def verify_feed_ownership
+      unless current_user.feed.display_name == params[:feed_id]
+        head status: :unauthorized
       end
     end
 
