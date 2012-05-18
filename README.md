@@ -301,7 +301,7 @@ API Endpoint: `http://simplefeed.dev:2999/api/feeds/<feed_name>/items.json`
 
 HTTP verb: POST
 
-**Purpose:** Creates a new item for the given feed. The `type` value must be `"TextItem", "ImageItem", or "LinkItem".
+**Purpose:** Creates a new item for the given feed. The `type` value must be `"TextItem"`, `"ImageItem"`, or `"LinkItem"`.
 
 The credentials must match to the owner of the given feed. The request body should contain parameters in JSON format.
 
