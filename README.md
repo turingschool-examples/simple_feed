@@ -378,7 +378,7 @@ HTTP verb: PUT
 
 **Purpose:** Updates the details for a given feed item.
 
-The credentials must match to the owner of the given feed. The request body should contain parameters in JSON format.
+The credentials must match to the owner of the given feed. The request body should contain parameters in JSON format. It's not possible to change the type of the item.
 
 #### Request-Response Headers
 
@@ -420,7 +420,7 @@ Request-reponse headers including valid HTTP basic authorization credentials for
     Content-Type: application/json
     Authorization: Basic <Base 64-encoded credentials>
 
-    {"type" : "TextItem", "body" : "Moo, I'm a dog."}
+    {"body" : "Moo, I'm a dog."}
 
     HTTP/1.1 204 NO CONTENT
     Content-Type: application/json; charset=utf-8
