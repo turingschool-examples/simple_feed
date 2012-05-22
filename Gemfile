@@ -7,6 +7,13 @@ gem 'kaminari'
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'redis'
+gem 'resque'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-twitter'
+gem 'omniauth-instagram'
+gem 'simple_feed', path: '../simple_feed_client'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -16,8 +23,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
+group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'growl'
 end
 
 group :production do

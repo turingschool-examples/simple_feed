@@ -11,6 +11,14 @@ SimpleFeed::Application.routes.draw do
   match 'login'  => 'sessions#new',     :as => :login
   match 'logout' => 'sessions#destroy', :as => :logout
 
+  match '/auth/github/callback',    to: 'authentications#create', provider: 'github'
+  match '/auth/twitter/callback',   to: 'authentications#create', provider: 'twitter'
+  match '/auth/instagram/callback', to: 'authentications#create', provider: 'instagram'
+  match '/auth/failure' => redirect {|env, request|
+    request.flash[:error] = "Authentication error: #{request.params[:message].humanize}"
+    '/'
+  }
+
   namespace :api do
     resources :feeds, only: :show do
       collection do
