@@ -11,6 +11,8 @@ class Feed < ActiveRecord::Base
     send(kind.tableize.to_sym)
   end
 
+  def refeed(foo)
+  end
   def items_page_count(page_size=10)
     @items_page_count ||= begin
       pages, rem = feed_items.count.divmod(page_size)

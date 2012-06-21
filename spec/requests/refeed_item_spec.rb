@@ -1,27 +1,12 @@
 require 'spec_helper'
 
 describe "Refeeding an item" do
-  let!(:jeff) do
-    if jeff = User.find_by_username('j3')
-      jeff
-    else
-      User.create(:username => 'j3', :email => 'jeff@jumpstartlab.com')
-    end
-  end
-  let!(:matt) do
-    if matt = User.find_by_username('mattyoho')
-      matt
-    else
-      User.create(:username => 'mattyoho', :email => 'matt@jumpstartlab.com', :password => 'hungry', :password_confirmation => 'hungry')
-    end
-  end
+  let!(:jeff) { FactoryGirl.create(:jeff) }
+  let!(:matt) { FactoryGirl.create(:matt) }
 
   context "when I am logged in" do
     before do
-      visit login_path
-      fill_in 'username', :with => 'mattyoho'
-      fill_in 'password', :with => 'hungry'
-      click_button 'Login'
+      login('mattyoho', 'hungry')
     end
 
     context "when there is an item belonging to another user" do
@@ -32,7 +17,7 @@ describe "Refeeding an item" do
 
       context "when I view that user's feed" do
         before do
-          visit feed_path('j3')
+          visit feed_path(jeff.feed)
         end
 
         it "I see a refeed button" do
@@ -49,7 +34,7 @@ describe "Refeeding an item" do
           end
 
           it "shows up in my feed" do
-            visit feed_path('mattyoho')
+            visit feed_path(matt.feed)
             page.should have_content "This is an item"
           end
         end

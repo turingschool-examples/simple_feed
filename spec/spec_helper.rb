@@ -10,8 +10,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 module Sorcery
   module TestHelpers
-    def login_user(username, password)
-      page.driver.post(sessions_url, { username: username, password: password, remember_me: false})
+    def login(username, password)
+      page.driver.post(sessions_url, { username: username, password: password})
     end
   end
 end
