@@ -5,16 +5,15 @@ describe RefeedsController do
   let!(:feed) { user.feed }
   let!(:item) { FactoryGirl.create(:text_item) }
 
-  before { controller.stub(:current_user => user) }
-
   describe "#create" do
+    before { controller.stub(:current_user).and_return(user) }
 
     it "refeeds the item onto the user's feed" do
       feed.should_receive(:refeed).with(item)
       post :create, feed_item_id: item.id
     end
 
-    pending "redirects to the user's feed" do
+    it "redirects to the user's feed" do
       post :create, feed_item_id: item.id
       response.should redirect_to(feed)
     end

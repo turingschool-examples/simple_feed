@@ -14,7 +14,7 @@
           = link_to 'Edit', edit_feed_item_path(feed_item), class: "btn"
           = link_to 'Destroy', feed_item_path(feed_item), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-danger"
         - elsif logged_in?
-          = link_to 'Refeed', '#', class: "btn"
+          = link_to 'Refeed', feed_item_refeeds_path(feed_item), class: "btn", method: :post
 
 = paginate @feed_items
 
