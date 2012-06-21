@@ -26,9 +26,12 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
   gem 'guard'
   gem 'guard-rspec'
   gem 'growl'
+  gem 'factory_girl'
 end
 
 group :production do

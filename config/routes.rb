@@ -4,7 +4,9 @@ SimpleFeed::Application.routes.draw do
 
   resources :sessions,   only:   [:create, :destroy, :new]
   resources :feeds,      only:   [:index, :show]
-  resources :feed_items, except: [:index, :show], path: 'items'
+  resources :feed_items, except: [:index, :show], path: 'items' do
+    resources :refeeds, only: :create
+  end
   resources :users,      only:   [:create, :new]
 
   match 'signup' => 'users#new',        :as => :signup
