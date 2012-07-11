@@ -1,3 +1,4 @@
+//= require spec_helper
 //= require titleize
 
 describe("String#titleize", function() {

@@ -1,9 +1,9 @@
 //= require spec_helper
 
 var asyncUpdate = function(callback) {
-  sleep(5000);
+  //sleep(5000);
   callback(true);
-}
+};
 
 describe("asyncUpdate", function() {
   it("returns true after a long process", function(done) {
@@ -12,6 +12,5 @@ describe("asyncUpdate", function() {
       done();
     });
   });
-};
-
+});
 
