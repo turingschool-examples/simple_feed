@@ -12,6 +12,10 @@ class FeedItem < ActiveRecord::Base
     last_first.limit(n)
   end
 
+  def self.since(id)
+    id.present? ? where("id > ?", id.to_i) : scoped
+  end
+
   def self.items_page_count(page_size=10)
     @items_page_count ||= begin
       pages, rem = scoped.count.divmod(page_size)

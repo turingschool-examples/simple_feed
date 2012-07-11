@@ -46,6 +46,12 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    capybara-webkit (0.12.1)
+      capybara (>= 1.0.0, < 1.2)
+      json
+    chai-jquery-rails (0.0.2)
+      railties (~> 3.1)
+      sprockets
     childprocess (0.3.2)
       ffi (~> 1.0.6)
     coffee-rails (3.2.2)
@@ -95,6 +101,11 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
+    konacha (1.4.1)
+      actionpack (~> 3.1)
+      capybara
+      railties (~> 3.1)
+      sprockets
     launchy (2.0.5)
       addressable (~> 2.2.6)
     less (2.2.1)
@@ -235,6 +246,8 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  capybara-webkit
+  chai-jquery-rails
   coffee-rails (~> 3.2.1)
   factory_girl_rails
   growl
@@ -244,6 +257,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   kaminari
+  konacha
   launchy
   less-rails-bootstrap
   omniauth

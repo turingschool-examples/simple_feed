@@ -3,7 +3,7 @@
 - @feed_items.each do |feed_item|
   .row
     .span6.offset3.well
-      %div
+      %div.item(data-item-id = "#{feed_item.id}")
         %img{src: feed_item.feed.gravatar}
         %strong= link_to(feed_item.username, feed_item.feed)
         = distance_of_time_in_words_to_now(feed_item.created_at) + " ago"
