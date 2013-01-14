@@ -2,6 +2,8 @@ require 'digest/md5'
 
 class User < ActiveRecord::Base
   has_one :feed, inverse_of: :user
+  has_many :authentications
+
   attr_accessible :email, :password, :password_confirmation
   authenticates_with_sorcery!
 

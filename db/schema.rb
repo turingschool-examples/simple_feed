@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515022004) do
+ActiveRecord::Schema.define(:version => 20120523193054) do
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "provider"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "feed_items", :force => true do |t|
     t.text     "body"
@@ -40,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20120515022004) do
     t.string   "salt"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "api_token"
   end
 
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
