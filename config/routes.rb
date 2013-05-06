@@ -26,7 +26,7 @@ SimpleFeed::Application.routes.draw do
       collection do
         get :items
       end
-      resources :feed_items, path: 'items', only: [:index, :create, :update]
+      resources :feed_items, path: 'items', only: [:show, :index, :create, :update]
     end
   end
 

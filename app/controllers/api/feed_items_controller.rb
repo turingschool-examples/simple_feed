@@ -3,6 +3,15 @@ module Api
 
     before_filter :verify_feed_ownership, except: :index
 
+    def show
+      item = Feed.find_by_name!(params[:feed_id]).feed_items.where(id: params[:id]).first
+      if item
+        render json: item
+      else
+        head 404
+      end
+    end
+
     def index
       feed        = Feed.find_by_name!(params[:feed_id])
       @feed_items = feed.feed_items.last_first(params[:page])
