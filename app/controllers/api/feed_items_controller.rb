@@ -5,10 +5,9 @@ module Api
 
     def show
       item = Feed.find_by_name!(params[:feed_id]).feed_items.where(id: params[:id]).first
-      if item
-        render json: item
-      else
-        head 404
+      return head 404 unless item
+      respond_to do |format|
+        format.json { render locals: {item: item} }
       end
     end
 
