@@ -4,10 +4,10 @@ module Api
     before_filter :verify_feed_ownership, except: :index
 
     def show
-      item = Feed.find_by_name!(params[:feed_id]).feed_items.where(id: params[:id]).first
-      return head 404 unless item
+      @feed_item = Feed.find_by_name!(params[:feed_id]).feed_items.where(id: params[:id]).first
+      return head 404 unless @feed_item
       respond_to do |format|
-        format.json { render locals: {item: item} }
+        format.json
       end
     end
 
