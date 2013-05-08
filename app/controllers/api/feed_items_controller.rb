@@ -5,10 +5,7 @@ module Api
 
     def show
       @feed_item = Feed.find_by_name!(params[:feed_id]).feed_items.where(id: params[:id]).first
-      return head 404 unless @feed_item
-      respond_to do |format|
-        format.json
-      end
+      head 404 unless @feed_item
     end
 
     def index
