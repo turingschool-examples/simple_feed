@@ -14,7 +14,6 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
 gem 'omniauth-instagram'
-gem 'simple_feed', path: '../simple_feed_client'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

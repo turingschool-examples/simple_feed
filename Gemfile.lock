@@ -1,9 +1,3 @@
-PATH
-  remote: ../simple_feed_client
-  specs:
-    simple_feed (0.0.2)
-      faraday
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -257,7 +251,6 @@ DEPENDENCIES
   resque
   rspec-rails
   sass-rails (~> 3.2.3)
-  simple_feed!
   simple_form
   sorcery
   sqlite3
